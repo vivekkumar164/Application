@@ -15,13 +15,15 @@ import { HomeComponent } from './home';
 import { LoginComponent } from './login';;
 import { SignUpComponent } from './sign-up/sign-up.component';
 import { environment } from '../environments/environment';
+import { AvatarModule } from 'ngx-avatar';
 
 @NgModule({
     imports: [
         BrowserModule,
         ReactiveFormsModule,
         HttpClientModule,
-        AppRoutingModule
+        AppRoutingModule,
+        AvatarModule
     ],
     declarations: [
         AppComponent,

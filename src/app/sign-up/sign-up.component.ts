@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, ValidationErrors, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
-import { AuthenticationService } from '../_services';
-//import { AuthenticationService } from '@app/_services';
+import { AuthenticationService, UserService } from '../_services';
+//import { AuthenticationService, UserService } from '@app/_services';
 
 @Component({
   selector: 'app-sign-up',
@@ -17,10 +17,13 @@ export class SignUpComponent implements OnInit {
     returnUrl: string;
     error = '';
 
+    public user={"email":"vivek123@gmail.com", "password":"vivekqwertyuiop", "username":"vivek12234"};
+
       constructor(private formBuilder: FormBuilder,
       private route: ActivatedRoute,
       private router: Router,
-      private authenticationService: AuthenticationService) { }
+      private authenticationService: AuthenticationService,
+      private userservice : UserService) { }
 
 
       getFormValidationErrors() {
@@ -42,13 +45,31 @@ export class SignUpComponent implements OnInit {
       return;
   }
 
-  this.loading = true;
-    const usersKey = 'angular-9-jwt-refresh-token-users';
-    const users = JSON.parse(localStorage.getItem(usersKey)) || [];
-    users.push({ id: this.id+1,  firstName: this.f.firstname.value, lastName: this.f.lastname.value, username: this.f.username.value, password: this.f.password.value, refreshTokens: [] });
-    console.log('users',users);
-    this.loading = false;
-    localStorage.setItem(usersKey, JSON.stringify(users));
+  // this.loading = true;
+  //   const usersKey = 'angular-9-jwt-refresh-token-users';
+  //   const users = JSON.parse(localStorage.getItem(usersKey)) || [];
+  //   users.push({ id: this.id+1,  firstName: this.f.firstname.value, lastName: this.f.lastname.value, username: this.f.username.value, password: this.f.password.value, refreshTokens: [] });
+  //   console.log('users',users);
+  //   this.loading = false;
+  //   localStorage.setItem(usersKey, JSON.stringify(users));
+  console.log(this.loginForm.value.email);
+   this.user.email=this.loginForm.value.email;
+   this.user.password=this.loginForm.value.password;
+   this.user.username=this.loginForm.value.username;
+  let payload ={
+    "user":{
+      "email":this.loginForm.value.email,
+      "password":this.loginForm.value.password,
+      "username":this.loginForm.value.username
+  }}
+  this.userservice.signup(payload).subscribe(data=>{
+    if(data){
+      console.log("**** success *****");
+    }
+  },
+  (err)=>{
+    console.log("error*********",err);
+  })
   }
 
 
@@ -61,10 +82,10 @@ export class SignUpComponent implements OnInit {
     this.id=users.length;
     console.log(this.id);
     this.loginForm = this.formBuilder.group({
-      username: ['', Validators.required],
+      email: ['', Validators.required],
       password: ['', Validators.required],
-      firstname: ['', Validators.required],
-      lastname: ['', Validators.required],
+      username: ['', Validators.required],
+
   });
   }
 

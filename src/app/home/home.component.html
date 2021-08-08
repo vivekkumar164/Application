@@ -1,10 +1,94 @@
-﻿<div class="card mt-4">
-    <h4 class="card-header">Authentication works</h4>
-    <div class="card-body">
-        <h6>Users from secure api end point</h6>
-        <div *ngIf="loading" class="spinner-border spinner-border-sm"></div>
-        <ul *ngIf="users">
-            <li *ngFor="let user of users">{{user.firstName}} {{user.lastName}}</li>
-        </ul>
+﻿<nav class="navbar navbar-expand-lg navbar-light bg-light" >
+  <a class="navbar-brand" routerLink='/home'>Medium</a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+    <div class="navbar-nav">
+      <!-- <a class="nav-item nav-link active" href="#">Home <span class="sr-only">(current)</span></a>
+      <a class="nav-item nav-link" href="#">Features</a>
+      <a class="nav-item nav-link" href="#">Pricing</a>
+      <a class="nav-item nav-link disabled" href="#">Disabled</a> -->
     </div>
+  </div>
+
+  <div style="float: right;">
+    <ngx-avatar name="{{username}}"></ngx-avatar>
+  </div>
+</nav>
+
+
+<div class=" mt-4">
+  <div class="row" >
+
+    <div class="col-md-8 " style="overflow: scroll;" >
+      <div class="row p-3" *ngFor="let index of allArticles">
+        <div class="col-md-8 p-3" ><br>
+            <div class="row" >
+              <ngx-avatar size="30" src="{{index.author.image}}"></ngx-avatar>
+               &nbsp; <span>{{index.author.username}}</span>
+            </div>
+
+            <div class="row">
+              <span>{{index.title}}</span>
+            </div>
+        </div>
+
+        <div class="col-md-4"  >
+            <img src="{{index.author.image}}" /><br>
+        </div>
+        </div>
+    </div>
+
+
+    <div class="col-md-4" style="text-align: center;">
+      <div class="container"  >
+        <div class="row" style="padding-left: 50%;"><i class="fa fa-twitter" style="font-size:36px;color: rgb(14, 155, 211);"></i> </div>
+      <div class="row"> Discover Medium writers you already follow on Twitter.</div>
+      <div class="row" style="padding-left: 35%;">
+        <button style="font-size:16px;border-radius:20px;background-color: transparent;" ><i class="fa fa-twitter" style="color: rgb(14, 155, 211);"></i> Connect to Twitter </button>
+
+      </div>
+
+      <button style="font-size:12px" type="button" class="btn btn-link">May be later</button>
+      </div>
+
+
+      <div class="container" >
+        <div class="row" style="padding-top: 15%;text-align: center;">
+          RECOMMENDED TOPICS
+        </div>
+        <div class="row" style="text-align: center;padding-top: 5%;">
+         &nbsp; &nbsp; &nbsp;<span   class="bg-light text-dark">Technology</span>
+         &nbsp; &nbsp; &nbsp;<span  class="bg-light text-dark">Money</span>
+         &nbsp; &nbsp; &nbsp;<span  class="bg-light text-dark">Business</span>
+         &nbsp; &nbsp; &nbsp;<span  class="bg-light text-dark">Productivity</span>
+         &nbsp; &nbsp; &nbsp;<span  class="bg-light text-dark">Psychology</span>
+         &nbsp; &nbsp; &nbsp;<span  class="bg-light text-dark">Mindfullness</span>
+         &nbsp; &nbsp; &nbsp;<span  class="bg-light text-dark">Art</span>
+        </div>
+
+      </div>
+
+
+      <div class="container">
+        <div class="row" style="padding-top: 15%;text-align: center;">
+         WHO TO FOLLOW
+        </div>
+
+        <!-- <div>
+          <ngx-avatar size="30" src="{{index.author.image}}"></ngx-avatar>
+        </div>
+        <div>
+          <ngx-avatar size="30" src="{{index.author.image}}"></ngx-avatar>
+        </div>
+        <div>
+          <ngx-avatar size="30" src="{{index.author.image}}"></ngx-avatar>
+        </div> -->
+      </div>
+
+    </div>
+
+  </div>
+
 </div>

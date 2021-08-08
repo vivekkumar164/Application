@@ -1,10 +1,11 @@
-﻿import { Component, OnInit } from '@angular/core';
+﻿import { AppStateService } from './../app-state.service';
+import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { first } from 'rxjs/operators';
-import { AuthenticationService } from '../_services';
+import { AuthenticationService, UserService } from '../_services';
 
-//import { AuthenticationService } from '@app/_services';
+//import { AuthenticationService, UserService } from '@app/_services';
 
 @Component({ templateUrl: 'login.component.html' })
 export class LoginComponent implements OnInit {
@@ -18,10 +19,12 @@ export class LoginComponent implements OnInit {
         private formBuilder: FormBuilder,
         private route: ActivatedRoute,
         private router: Router,
-        private authenticationService: AuthenticationService
+        private authenticationService: AuthenticationService,
+        private userservice : UserService,
+        public appstateservice : AppStateService
     ) {
         // redirect to home if already logged in
-        if (this.authenticationService.userValue) {
+        if (this.appstateservice.username) {
             this.router.navigate(['/']);
         }
     }
@@ -48,16 +51,32 @@ export class LoginComponent implements OnInit {
         }
 
         this.loading = true;
-        this.authenticationService.login(this.f.username.value, this.f.password.value)
-            .pipe(first())
-            .subscribe({
-                next: () => {
-                    this.router.navigate([this.returnUrl]);
-                },
-                error: error => {
-                    this.error = error;
-                    this.loading = false;
-                }
-            });
+        let payload={"user":
+        {"email":this.loginForm.value.username,
+         "password":this.loginForm.value.password
+        }}
+        this.userservice.login(payload).subscribe(data=>{
+          if(data){
+            this.loading=false;
+            console.log("logged in ****************",data);
+            this.appstateservice.username=data.user.username;
+            this.appstateservice.token=data.user.token;
+            console.log('this.appstateservice.username',this.appstateservice.username);
+            this.router.navigate(['/home']);
+          }
+        },(err)=>{
+          console.log('err***',err);
+        })
+        // this.authenticationService.login(this.f.username.value, this.f.password.value)
+        //     .pipe(first())
+        //     .subscribe({
+        //         next: () => {
+        //             this.router.navigate([this.returnUrl]);
+        //         },
+        //         error: error => {
+        //             this.error = error;
+        //             this.loading = false;
+        //         }
+        //     });
     }
 }
