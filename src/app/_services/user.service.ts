@@ -45,4 +45,19 @@ export class UserService {
       let url='https://conduit.productionready.io/api/articles?tag=dragons';
       return this.http.get<any>(url);
     }
+
+    public postArticle(obj : any){
+      let url='https://conduit.productionready.io/api/articles';
+      return this.http.post<any>(url,obj);
+    }
+
+    public getArticlebyAuthor(name : string){
+      let url='https://conduit.productionready.io/api/articles?author='+name;
+      return this.http.get<any>(url);
+    }
+
+    public getArticlebyslug(slug : string){
+      let url='https://conduit.productionready.io/api/articles/'+slug;
+      return this.http.get<any>(url);
+    }
 }

@@ -1,8 +1,13 @@
 <!-- nav -->
-<nav class="navbar navbar-expand navbar-light bg-light" *ngIf="user">
+<nav class="navbar navbar-expand navbar-light bg-light" >
   <div class="navbar-nav">
-      <a class="nav-item nav-link" routerLink="/">Medium</a>
-      <!-- <a class="nav-item nav-link" (click)="logout()">Logout</a> -->
+      <a class="nav-item nav-link" routerLink="/home">Medium</a>
+      <a  style="padding-left: 891%;" *ngIf="user" class="nav-item nav-link" (click)="logout()">Logout</a>
+      <!-- <span style="padding-left: 450%;"> <button  type="button" class="btn btn-info">Publish</button></span> -->
+
+  </div>
+  <div style="position: relative;top: 0%;right: 6%;">
+    <!-- <ngx-avatar name={{user}}></ngx-avatar> -->
   </div>
 </nav>
 

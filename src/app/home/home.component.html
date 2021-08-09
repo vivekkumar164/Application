@@ -1,43 +1,35 @@
-﻿<nav class="navbar navbar-expand-lg navbar-light bg-light" >
+﻿<!-- <nav class="navbar navbar-expand-lg navbar-light bg-light" >
   <a class="navbar-brand" routerLink='/home'>Medium</a>
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
   </button>
   <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
     <div class="navbar-nav">
-      <!-- <a class="nav-item nav-link active" href="#">Home <span class="sr-only">(current)</span></a>
-      <a class="nav-item nav-link" href="#">Features</a>
-      <a class="nav-item nav-link" href="#">Pricing</a>
-      <a class="nav-item nav-link disabled" href="#">Disabled</a> -->
+
     </div>
   </div>
 
   <div style="float: right;">
-    <ngx-avatar name="{{username}}"></ngx-avatar>
+    <ngx-avatar name={{username}}></ngx-avatar>
   </div>
-</nav>
+</nav> -->
 
 
 <div class=" mt-4">
+
   <div class="row" >
 
-    <div class="col-md-8 " style="overflow: scroll;" >
-      <div class="row p-3" *ngFor="let index of allArticles">
-        <div class="col-md-8 p-3" ><br>
-            <div class="row" >
-              <ngx-avatar size="30" src="{{index.author.image}}"></ngx-avatar>
-               &nbsp; <span>{{index.author.username}}</span>
-            </div>
+    <div class="col-md-8 " >
+      <tabset #tabset>
 
-            <div class="row">
-              <span>{{index.title}}</span>
-            </div>
-        </div>
+        <tab  heading="RECOMENDED FOR YOU " id="tab2">
+          <app-articles ></app-articles>
+        </tab>
+        <tab  heading="FOLLOWING" id="tab1">
 
-        <div class="col-md-4"  >
-            <img src="{{index.author.image}}" /><br>
-        </div>
-        </div>
+        </tab>
+
+      </tabset>
     </div>
 
 
@@ -45,7 +37,7 @@
       <div class="container"  >
         <div class="row" style="padding-left: 50%;"><i class="fa fa-twitter" style="font-size:36px;color: rgb(14, 155, 211);"></i> </div>
       <div class="row"> Discover Medium writers you already follow on Twitter.</div>
-      <div class="row" style="padding-left: 35%;">
+      <div class="row" style="padding-left: 32%;">
         <button style="font-size:16px;border-radius:20px;background-color: transparent;" ><i class="fa fa-twitter" style="color: rgb(14, 155, 211);"></i> Connect to Twitter </button>
 
       </div>
@@ -76,15 +68,63 @@
          WHO TO FOLLOW
         </div>
 
-        <!-- <div>
-          <ngx-avatar size="30" src="{{index.author.image}}"></ngx-avatar>
-        </div>
-        <div>
-          <ngx-avatar size="30" src="{{index.author.image}}"></ngx-avatar>
-        </div>
-        <div>
-          <ngx-avatar size="30" src="{{index.author.image}}"></ngx-avatar>
-        </div> -->
+        <div class="row p-3">
+          <div class="row">
+            <div class="col-sm-3">
+              <ngx-avatar size="40" src="https://avatars.githubusercontent.com/u/47750294?s=400&u=453693e495009c9abf45e86c438bdaa988226db8&v=4"></ngx-avatar>
+            </div>
+            <div class="col-sm-6">
+              <div class="row">
+                vivek kumar
+              </div>
+              <div class="row">
+                Description
+              </div>
+            </div>
+            <div class="col-sm-3">
+              <button *ngIf="!color1" (click)="follow1()"type="button" class="btn btn-light">Follow</button>
+              <button *ngIf="color1" (click)="follow1()"type="button" class="btn btn-dark">Following</button>
+            </div>
+        </div >
+        <div class="row p-3">
+          <div class="row">
+            <div class="col-sm-3">
+              <ngx-avatar size="40" src="https://avatars.githubusercontent.com/u/47750294?s=400&u=453693e495009c9abf45e86c438bdaa988226db8&v=4"></ngx-avatar>
+            </div>
+            <div class="col-sm-6">
+              <div class="row">
+                vivek kumar
+              </div>
+              <div class="row">
+                Description
+              </div>
+            </div>
+            <div class="col-sm-3">
+              <button *ngIf="!color2" (click)="follow2()"type="button" class="btn btn-light">Follow</button>
+              <button *ngIf="color2" (click)="follow2()"type="button" class="btn btn-dark">Following</button>
+            </div>
+        </div >
+
+        </div >
+        <div class="row p-3">
+          <div class="row">
+            <div class="col-sm-3">
+              <ngx-avatar size="40" src="https://avatars.githubusercontent.com/u/47750294?s=400&u=453693e495009c9abf45e86c438bdaa988226db8&v=4"></ngx-avatar>
+            </div>
+            <div class="col-sm-6">
+              <div class="row">
+                vivek kumar
+              </div>
+              <div class="row">
+                Description
+              </div>
+            </div>
+            <div class="col-sm-3">
+              <button *ngIf="!color" (click)="follow()"type="button" class="btn btn-light">Follow</button>
+              <button *ngIf="color" (click)="follow()"type="button" class="btn btn-dark">Following</button>
+            </div>
+        </div >
+        </div >
       </div>
 
     </div>

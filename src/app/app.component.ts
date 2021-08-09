@@ -1,3 +1,5 @@
+import { Router } from '@angular/router';
+import { AppStateService } from './app-state.service';
 import { Component } from '@angular/core';
 
 import { AuthenticationService } from './_services';
@@ -7,11 +9,22 @@ import { User } from './_models';
 export class AppComponent {
     user: User;
 
-    constructor(private authenticationService: AuthenticationService) {
-        this.authenticationService.user.subscribe(x => this.user = x);
+    constructor(private authenticationService: AuthenticationService,
+      private appstateservice : AppStateService,
+      public router:Router) {
+        this.user=this.appstateservice.username;
+    }
+
+    ngOnInit(){
+      setInterval(()=>{
+        this.user=this.appstateservice.username;
+      },1000);
+
+
     }
 
     logout() {
-        this.authenticationService.logout();
+      this.appstateservice.username='';
+       this.router.navigate(['/login']);
     }
 }

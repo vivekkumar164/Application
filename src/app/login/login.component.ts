@@ -66,6 +66,7 @@ export class LoginComponent implements OnInit {
           }
         },(err)=>{
           console.log('err***',err);
+          this.loading=false;
         })
         // this.authenticationService.login(this.f.username.value, this.f.password.value)
         //     .pipe(first())

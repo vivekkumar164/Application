@@ -1,0 +1,40 @@
+
+<div class="row" style="margin-top: 2%;">
+  <div class="col-sm-8">
+
+    <div style="padding-left: 10%;">Post a quick thought or a long story. It's easy and free.
+
+    </div></div>
+  <div class="col-sm-2"><button style="width: max-content;" routerLink="/new" type="button" class="btn btn-dark">Write on Medium</button></div>
+
+  <!-- <div class="row">
+    <span style="padding-left: 10%;">Post a quick thought or a long story. It's easy and free.</span>
+    <span style="float: right;">
+      <button type="button" class="btn btn-dark">Dark</button>
+    </span>
+
+  </div> -->
+
+
+
+</div>
+<div class="row p-3 hovering" *ngFor="let index of allArticles" routerLink='/selected'>
+  <div class="col-md-8 p-3" ><br>
+      <div class="row hovering" >
+        <ngx-avatar size="30" src="{{index.author.image}}"></ngx-avatar>
+         &nbsp; <span>{{index.author.username}}</span>
+      </div>
+
+      <div class="row">
+        <span>{{index.title}}</span>
+      </div>
+  </div>
+
+  <div class="col-md-4"  >
+    <ng-container style="object-fit: cover;">
+      <!-- <iframe src="{{index.author.image}}" ></iframe> -->
+      <img style="width: 100%;" src="{{index.author.image}}" />
+    </ng-container>
+
+  </div>
+  </div>
